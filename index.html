@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +26,9 @@ header{
 
 h1{
     margin:0;
-    font-size:56px;
+    font-size:48px;
     font-weight:600;
+    letter-spacing:2px;
 }
 
 .subtitle{
@@ -43,9 +44,11 @@ h1{
 }
 
 @media(min-width:800px){
+
     .gallery{
         grid-template-columns:repeat(4,1fr);
     }
+
 }
 
 .item{
@@ -72,14 +75,12 @@ h1{
 
 .modal.active{
     display:flex;
-
     align-items:center;
     justify-content:center;
 }
 
 .modal-content{
     position:relative;
-
     width:90vw;
     max-width:1000px;
 }
@@ -112,7 +113,7 @@ h1{
 
 .caption p{
     margin:0;
-    line-height:1.5;
+    line-height:1.6;
 }
 
 .close{
@@ -143,6 +144,7 @@ a{
 
 </style>
 </head>
+
 <body>
 
 <header>
@@ -158,6 +160,7 @@ Tabla made in Japan
 <div class="gallery" id="gallery"></div>
 
 <section>
+
 <h2>About</h2>
 
 <p>
@@ -167,7 +170,7 @@ Handmade tablas crafted in Japan using domestic wood and traditional materials.
 <h2>Instruments</h2>
 
 <p>
-Current and past instruments.
+Coming soon.
 </p>
 
 <h2>Contact</h2>
@@ -216,7 +219,7 @@ image:"images/photo2.jpg",
 title:"Traditional Japanese Coopering",
 
 text:"The staves are carefully planed to precise angles and assembled into a shell. This method originates from traditional Japanese coopering, a technique historically used for wooden buckets and barrels."
-}
+},
 
 {
 image:"images/photo3.jpg",
@@ -225,29 +228,30 @@ title:"Rattan Hoops",
 
 text:"Rattan hoops are fitted around the shell and tightened to hold the staves together. This technique is also found in traditional Japanese coopered vessels, where hoops provide strength without the use of metal fasteners."
 }
+
 ];
 
-items.sort(()=>Math.random()-0.5);
+items.sort(() => Math.random() - 0.5);
 
-const gallery=document.getElementById("gallery");
+const gallery = document.getElementById("gallery");
 
-items.forEach(item=>{
+items.forEach(item => {
 
-const div=document.createElement("div");
+const div = document.createElement("div");
 
-div.className="item";
+div.className = "item";
 
-div.innerHTML=`
+div.innerHTML = `
 <img src="${item.image}">
 `;
 
-div.onclick=()=>{
+div.onclick = () => {
 
-document.getElementById("modalImage").src=item.image;
+document.getElementById("modalImage").src = item.image;
 
-document.getElementById("modalTitle").innerText=item.title;
+document.getElementById("modalTitle").innerText = item.title;
 
-document.getElementById("modalText").innerText=item.text;
+document.getElementById("modalText").innerText = item.text;
 
 document.getElementById("modal").classList.add("active");
 
@@ -258,13 +262,17 @@ gallery.appendChild(div);
 });
 
 function closeModal(){
+
 document.getElementById("modal").classList.remove("active");
+
 }
 
-document.getElementById("modal").onclick=function(e){
+document.getElementById("modal").onclick = function(e){
 
-if(e.target===this){
+if(e.target === this){
+
 closeModal();
+
 }
 
 }
