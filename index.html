@@ -7,111 +7,142 @@
 
 <title>YASHI</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
     background:#111;
-    color:#eee;
+    color:white;
     font-family:'Quicksand',sans-serif;
-
-    max-width:1000px;
-    margin:0 auto;
-    padding:40px 20px 80px 20px;
+    margin:0;
+    padding:30px 15px 80px;
 }
 
 header{
     text-align:center;
-    margin-bottom:60px;
+    margin-bottom:40px;
 }
 
 h1{
-    font-size:72px;
     margin:0;
+    font-size:56px;
     font-weight:600;
 }
 
 .subtitle{
-    font-size:22px;
-    opacity:0.75;
-    margin-top:12px;
-}
-
-nav{
-    margin-top:40px;
-}
-
-nav a{
-    color:#bbb;
-    text-decoration:none;
-    margin:0 16px;
-}
-
-nav a:hover{
-    color:white;
+    margin-top:10px;
+    opacity:0.8;
+    font-size:20px;
 }
 
 .gallery{
     display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-    gap:24px;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+@media(min-width:800px){
+    .gallery{
+        grid-template-columns:repeat(4,1fr);
+    }
 }
 
 .item{
-    position:relative;
+    cursor:pointer;
 }
 
 .item img{
     width:100%;
     aspect-ratio:1/1;
     object-fit:cover;
-
     display:block;
+}
 
-    border-radius:12px;
+.modal{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.95);
+
+    z-index:999;
+}
+
+.modal.active{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-content{
+    position:relative;
+
+    width:90vw;
+    max-width:1000px;
+}
+
+.modal img{
+    width:100%;
+    max-height:90vh;
+    object-fit:contain;
 }
 
 .caption{
     position:absolute;
 
-    left:12px;
-    bottom:10px;
+    left:20px;
+    bottom:20px;
 
     color:white;
 
-    font-size:14px;
-
     text-shadow:
-    0 0 10px rgba(0,0,0,0.9);
+    0 0 10px black,
+    0 0 20px black;
+
+    max-width:70%;
 }
 
-.video iframe{
-    width:100%;
-    aspect-ratio:1/1;
-
-    border:none;
-
-    border-radius:12px;
+.caption h2{
+    margin:0 0 10px;
+    font-size:28px;
 }
 
-footer{
-    margin-top:80px;
+.caption p{
+    margin:0;
+    line-height:1.5;
+}
 
-    text-align:center;
+.close{
+    position:absolute;
 
-    color:#666;
+    top:20px;
+    right:20px;
 
-    font-size:14px;
+    font-size:40px;
+
+    cursor:pointer;
+
+    color:white;
+}
+
+section{
+    max-width:800px;
+    margin:80px auto 0;
+}
+
+section h2{
+    font-weight:600;
+}
+
+a{
+    color:white;
 }
 
 </style>
 </head>
-
 <body>
 
 <header>
@@ -122,54 +153,124 @@ footer{
 Tabla made in Japan
 </div>
 
-<nav>
-<a href="#">archive</a>
-<a href="#">instruments</a>
-<a href="#">about</a>
-<a href="#">contact</a>
-</nav>
-
 </header>
 
-<div class="gallery">
+<div class="gallery" id="gallery"></div>
 
-<div class="item">
-<img src="images/photo1.jpg">
-<div class="caption">2026.05</div>
+<section>
+<h2>About</h2>
+
+<p>
+Handmade tablas crafted in Japan using domestic wood and traditional materials.
+</p>
+
+<h2>Instruments</h2>
+
+<p>
+Current and past instruments.
+</p>
+
+<h2>Contact</h2>
+
+<p>
+your@email.com
+</p>
+
+</section>
+
+<div class="modal" id="modal">
+
+<div class="close" onclick="closeModal()">×</div>
+
+<div class="modal-content">
+
+<img id="modalImage">
+
+<div class="caption">
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
 </div>
 
-<div class="item">
-<img src="images/photo2.jpg">
-<div class="caption">unfinished</div>
-</div>
-
-<div class="item">
-<img src="images/photo3.jpg">
-<div class="caption">new shell</div>
-</div>
-
-<div class="item video">
-<iframe
-src="https://www.youtube.com/embed/VIDEO_ID"
-allowfullscreen>
-</iframe>
-</div>
-
-<div class="item">
-<img src="images/photo4.jpg">
-<div class="caption">goat skin</div>
-</div>
-
-<div class="item">
-<img src="images/photo5.jpg">
-<div class="caption">test #03</div>
 </div>
 
 </div>
 
-<footer>
-Japan
-</footer>
+<script>
+
+const items = [
+
+{
+image:"images/photo1.jpg",
+
+title:"Japanese Handmade Tabla",
+
+text:"Using Japanese cedar shaped with traditional coopered-shell construction. The wooden body is built from staves rather than being turned from a solid block."
+},
+
+{
+image:"images/photo2.jpg",
+
+title:"Goatskin Test",
+
+text:"Testing thinner goatskin for improved response and tone."
+},
+
+{
+image:"images/photo3.jpg",
+
+title:"Workshop Note",
+
+text:"A small step in the process."
+}
+
+];
+
+items.sort(()=>Math.random()-0.5);
+
+const gallery=document.getElementById("gallery");
+
+items.forEach(item=>{
+
+const div=document.createElement("div");
+
+div.className="item";
+
+div.innerHTML=`
+<img src="${item.image}">
+`;
+
+div.onclick=()=>{
+
+document.getElementById("modalImage").src=item.image;
+
+document.getElementById("modalTitle").innerText=item.title;
+
+document.getElementById("modalText").innerText=item.text;
+
+document.getElementById("modal").classList.add("active");
+
+};
+
+gallery.appendChild(div);
+
+});
+
+function closeModal(){
+document.getElementById("modal").classList.remove("active");
+}
+
+document.getElementById("modal").onclick=function(e){
+
+if(e.target===this){
+closeModal();
+}
+
+}
+
+</script>
 
 </body>
 </html>
