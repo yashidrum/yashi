@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,46 +10,72 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-  background:#111;
-  color:#eee;
+    background:#111;
+    color:#eee;
+    font-family:'Quicksand',sans-serif;
 
-  font-family:'Quicksand', sans-serif;
-
-  max-width:700px;
-
-  margin:120px auto;
-
-  padding:30px;
-
-  text-align:center;
+    max-width:900px;
+    margin:80px auto;
+    padding:20px;
 }
 
 h1{
-  font-size:96px;
-  font-weight:700;
-
-  letter-spacing:0.08em;
-
-  margin-bottom:10px;
+    text-align:center;
+    font-size:72px;
+    margin-bottom:0;
 }
 
-p{
-  font-size:32px;
-
-  opacity:0.7;
+.tagline{
+    text-align:center;
+    opacity:0.7;
+    margin-bottom:60px;
+    font-size:24px;
 }
 
-img{
-  width:100%;
+.gallery{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
+}
 
-  margin-top:60px;
+.item{
+    position:relative;
+}
 
-  border-radius:12px;
+.item img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:12px;
+}
+
+.caption{
+    position:absolute;
+
+    left:12px;
+    bottom:10px;
+
+    color:white;
+
+    font-size:16px;
+
+    text-shadow:
+    0 0 8px rgba(0,0,0,0.9);
+
+    letter-spacing:0.03em;
+}
+
+a{
+    text-decoration:none;
 }
 
 </style>
@@ -58,11 +85,44 @@ img{
 
 <h1>yashi</h1>
 
-<p>
+<div class="tagline">
 wood / skin / sound
-</p>
+</div>
 
-<img src="images/tabla.jpg">
+<div class="gallery">
+
+<a href="images/photo1.jpg" class="item">
+    <img src="images/photo1.jpg">
+    <div class="caption">goat skin</div>
+</a>
+
+<a href="images/photo2.jpg" class="item">
+    <img src="images/photo2.jpg">
+    <div class="caption">unfinished</div>
+</a>
+
+<a href="images/photo3.jpg" class="item">
+    <img src="images/photo3.jpg">
+    <div class="caption">test #03</div>
+</a>
+
+<a href="images/photo4.jpg" class="item">
+    <img src="images/photo4.jpg">
+    <div class="caption">summer rain</div>
+</a>
+
+<a href="images/photo5.jpg" class="item">
+    <img src="images/photo5.jpg">
+    <div class="caption">new shell</div>
+</a>
+
+<a href="images/photo6.jpg" class="item">
+    <img src="images/photo6.jpg">
+    <div class="caption">still thinking</div>
+</a>
+
+</div>
 
 </body>
 </html>
+```
